@@ -26,34 +26,34 @@ them in fasta format. Any sequences under 60 nucleotides in length will not be w
 since the shortest known protein is 20 amino acids long. The output file will be printed 
 in the same directory as the input.
 
-./mafTransToFasta <path to input maf>
+./mafTransToFasta {path to input maf}
 
 ### removeAncestor.py
 This script will remove ancestral sequences which were inferred by alignment programs 
 such as ProgressiveCactus.
 
-python removeAncestor.py -i <path to input fasta alignment> -o <path to output file>
+python removeAncestor.py -i {path to input fasta alignment} -o {path to output file}
 
 ### filterCDS.py
 This script identifies and writes common open reading frames within each aligned block. 
 This is a fairly simple technique for extracting ORFs and will be replaced with a more 
 sophisticated algorithm in the future.
 
-python filterCDS.py -i <path to input fasta alignment> -o <path to output file> -l <minimum sequence length>
+python filterCDS.py -i {path to input fasta alignment} -o {path to output file} -l {minimum sequence length}
 
 ### alignedGenes.py
 This script creates a csv table of equivalent gene IDs and any associated transcipt IDs 
 for each alignment block. It also summarizes the total number of genes and transcripts 
 found in each block.
 
-python alignedGenes.py <path to input fasta alignment> 
+python alignedGenes.py {path to input fasta alignment} 
 
 ### sampleMatrix.py
 This script produces a csv matrix summarizing the number of genes aligned between each 
 species/sample in the alignment. If "--combinations" is specified, it will return a matrix 
 of the number of genes uniquely aligned between eavery possible combination of samples.
 
-python sampleMatrix.py --combinations <path to input fasta alignment> 
+python sampleMatrix.py --combinations {path to input fasta alignment} 
  
 ### subsetAlignment.py
 This script will subset aligned blocks if they have the specified number of samples aligned 
@@ -61,14 +61,14 @@ or if they contain genes from specified samples. The "--unique" flag indicates t
 with only the given samples will be selected. Otherwise, blocks that contain at least those 
 samples will be selected.
 
-python subsetAlignment.py -n <# of samples to select> -i <path to input fasta alignment>
-python subsetAlignment.py --unique -s <comma seperated list of samples to select> -i <path to input fasta alignment> 
+python subsetAlignment.py -n {# of samples to select} -i {path to input fasta alignment}
+python subsetAlignment.py --unique -s {comma seperated list of samples to select} -i {path to input fasta alignment} 
 
 ### extractSequences.py
 This script will extract one sequence from each aligned block. If no sample ID is given, 
 the sequence will be chosen at random.
 
-python extractSequences.py -t <sample to extract> -i <path to input fasta alignment> 
+python extractSequences.py -t {sample to extract} -i {path to input fasta alignment} 
 
 ## Other Scripts
 ### transHeaders.py
@@ -83,4 +83,4 @@ is called by filterCDS.py but can also be called directly.
 This script will combine blastn, blastx, and blastp results (in outfmt6 format) into a csv file. 
 Input files must be titled blastn.outfmt6, blastx.outfmt6, and blastp.outfmt6.
 
-python blastToCSV.py -i <path to directory containing blast results>  -o <path to output file>
+python blastToCSV.py -i {path to directory containing blast results}  -o {path to output file}
