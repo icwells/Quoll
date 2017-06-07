@@ -26,6 +26,7 @@ If you are starting with an alignment in maf format, first run mafTransToFasta w
 will extract DNA sequences from the maf file.
 
 cd bin/
+
 python mafTransToFasta.py <path to input file>
 
 Next, removeAncestor.py can be used to remove ancestral sequences from the alignment (if desired).
@@ -38,8 +39,11 @@ frames. Export the path to TransDecoder and change into the output directory (Tr
 writes output to the working directory).
 
 export PATH=$PATH:<path to TransDecoder directory>
+
 cd <output directory>
+
 TransDecoder.LongOrfs -t <input file>
+
 TransDecoder.LongOrfs -t <input file>
 
 filterCDS.py can now be called to convert the TransDecoder output back into a fasta 
@@ -48,6 +52,7 @@ alignment. The input file for this script is the same input used for TransDecode
 transdecoder.cds file, so all other TransDecoder output can be deleted if desired.
 
 cd ~/Quoll/bin/
+
 python filterCDS.py <path to input file>
 
 The remaining scripts can then be called in any order for your analysis.
