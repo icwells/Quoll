@@ -34,10 +34,10 @@ def rmAncestor(infile, outfile):
 def main():
 	parser = argparse.ArgumentParser(description="This script will remove \
 ancestor sequences from a multiple species alignment.")
-	parser.add_argument("-i", help="Path to input file.")
-	parser.add_argument("-o", help="Path to output file.")
+	parser.add_argument("i", help="Path to input file.")
 	args = parser.parse_args()
-	rmAncestor(args.i, args.o)
+	outfile = args.i.replace(".fasta", ".noAnc.fasta")
+	rmAncestor(args.i, outfile)
 
 if __name__ == "__main__":
 	main()

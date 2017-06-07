@@ -49,7 +49,6 @@ def readBlast(annotation, blast, typ):
 			else:
 				# Add "NA" for missing values
 				annotation[trans].extend(["NA", "NA"])
-	print(len(annotation.keys()))
 	return annotation
 
 def checkProtein(annotation, anno):

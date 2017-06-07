@@ -2,12 +2,9 @@
 every sample in an alignment.'''
 
 import argparse
-import os
-import itertools
 from collections import OrderedDict
 from transHeaders import parseHeader, findSpecies
-
-#-----------------------------------------------------------------------------
+from combMatrix import combDict, alignedSamples, convertToMatrix
 
 def matrix(species):
 	# Create matrix 
@@ -55,88 +52,6 @@ def countAlignment(species, infile, delim):
 				ids = []
 			elif line[0] == ">":
 				ids.append(line[1:].strip())
-	return mat
-
-#-----------------------------------------------------------------------------
-
-def makeComb(samples):
-	# Calls itertools and converts result to list
-	comb = []
-	combs = []
-	for i in range(len(samples)):
-		if i > 1:
-			comb = itertools.combinations(samples, i)
-			for item in comb:
-				c = ""
-				for j in item:
-					# Join sample names for combination name
-					c += str(j) + "-"
-				combs.append(c[:-1])
-	return combs	
-
-def combDict(species):
-	# Creates entries for each combination
-	counts = OrderedDict()
-	combs = makeComb(species)
-	for i in combs:
-		# Add entry
-		counts[i] = 0
-	return counts
-
-def extractIDs(ids):
-	# Isolates gsample ID from fasta header
-	samples = []
-	for i in ids:
-		name, delim = parseHeader(i, True)
-		if name not in samples:
-			# Add unique sample IDs to list
-			samples.append(name)
-	return samples
-
-def countSamples(counts, samples):
-	# Counts the number of matches for each category
-	combs = makeComb(samples)
-	for i in combs:
-		if i in counts.keys():
-			# Increment if combination is present
-			counts[i] += 1
-	return counts		
-
-def alignedSamples(infile, counts):
-	# Extracts sample IDs from each aligned block
-	print("\tCalculating all combinations of aligned genes...\n")
-	ids = []
-	with open(infile, "r") as alignment:
-		for line in alignment:
-			if line[0] == ">":
-				ids.append(line[1:].strip())
-			elif not line.strip():
-				# Isolate sample IDS and count combinations
-				samples = extractIDs(ids)
-				counts = countSamples(counts, samples)
-				ids = []
-	return counts
-
-def convertToMatrix(counts, species):
-	# Convert dict to printable matrix
-	mat = OrderedDict()
-	l = len(species)
-	# Create template list
-	row = []
-	for i in range(l):
-		row.append(0)
-	for count in counts:
-		# Split first sample from list and index species for column
-		head = count[:count.find("-")]
-		tail = count[count.find("-")+1:]
-		idx = species.index(head)
-		if tail in mat.keys():
-			mat[tail][idx] = counts[count]
-		else:
-			# Save data in list entry
-			mat[tail] = []
-			mat[tail].extend(row)
-			mat[tail][idx] = counts[count]
 	return mat
 
 #-----------------------------------------------------------------------------
