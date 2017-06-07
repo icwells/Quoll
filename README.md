@@ -1,5 +1,5 @@
 # Quoll is a series of scripts for filtering and analyzing transcriptome alignments
-Version 1.2 is meant to facilitate the analysis of transcriptomes assembled with 
+Version 0.2 is meant to facilitate the analysis of transcriptomes assembled with 
 Trinity and aligned with ProgressiveCactus (although Lastz/MultiZ alignments can 
 also be used). 
 
