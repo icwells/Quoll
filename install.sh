@@ -11,6 +11,7 @@ python setup.py build_ext --inplace
 cd ../
 
 mv src/combMatrix.*.so bin/combMatrix.so
+mv src/findCDS.*.so bin/findCDS.so
 mv src/mafTrans.*.so bin/mafTrans.so
 mv src/transHeaders.*.so bin/transHeaders.so
 

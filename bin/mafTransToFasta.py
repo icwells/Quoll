@@ -11,7 +11,7 @@ from mafTrans import convert
 def main():
 	parser = argparse.ArgumentParser(description = "This program will convert \
 a maf transcriptome alignment to fasta format. It will filter out sequences \
-with less than 60 nucleotides.\n\nNote: it will not work for genome \
+with less than 60 nucleotides. Note: it will not work for genome \
 alingments since it will include all sequences in the output.")
 	parser.add_argument("i", help = "Path to input maf file.")
 	args = parser.parse_args()

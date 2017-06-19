@@ -6,8 +6,6 @@ import argparse
 def blastDict(indir):
 	# Builds dictionary from blast files
 	annotation = {}
-	if indir[-1] != "/":
-		indir += "/"
 	blastn = indir + "blastn.outfmt6"
 	blastx = indir + "blastx.outfmt6"
 	blastp = indir + "blastp.outfmt6"
@@ -84,11 +82,14 @@ def writeCSV(annotation, outfile):
 def main():
 	parser = argparse.ArgumentParser(description = "This script will \
 concatenate blastn, blastx, and blastp results into a single csv summary.")
-	parser.add_argument("-i", help = "Path to directory containing blast \
+	parser.add_argument("i", help = "Path to directory containing blast \
 results. Must contain three files titled: blastn.outfmt6, blastx.outfmt6, \
-and blastp.outfmt6.")
-	parser.add_argument("-o", help = "Path to output file.")
+and blastp.outfmt6. Output will be written to this directory.")
 	args = parser.parse_args()
+	indir = ars.i
+	if indir[-1] != "/":
+		indir += "/"
+	outfile = indir + "mergedBlastResults.csv" 
 	annotation = blastDict(args.i) 
 	writeCSV(annotation, args.o)
 
