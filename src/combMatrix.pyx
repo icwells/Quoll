@@ -7,7 +7,6 @@ from transHeaders import parseHeader, findSpecies
 
 def makeComb(samples):
 	# Calls itertools and converts result to list
-	cdef list comb
 	cdef list combs = [] 
 	cdef str c
 	cdef str j
@@ -57,7 +56,7 @@ def countSamples(counts, samples):
 def alignedSamples(infile, counts):
 	# Extracts sample IDs from each aligned block
 	print("\tCalculating all combinations of aligned genes...\n")
-	cdef list ids
+	cdef list ids = []
 	cdef str line
 	with open(infile, "r") as alignment:
 		for line in alignment:
