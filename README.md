@@ -44,7 +44,7 @@ cd {output directory}
 
 TransDecoder.LongOrfs -t {input file}
 
-TransDecoder.LongOrfs -t {input file}
+TransDecoder.Predict -t {input file}
 
 filterCDS.py can now be called to convert the TransDecoder output back into a fasta 
 alignment. The input file for this script is the same input used for TransDecoder 
