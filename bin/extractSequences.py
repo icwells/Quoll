@@ -8,7 +8,7 @@ def extract(seqs, target):
 	# Pull target from aligned black
 	seq = {}		
 	if target:
-		for header in seqs:
+		for header, delim in seqs:
 			sample = parseHeader(header, True)
 			if sample ==  target:
 				# Save any matching entry
@@ -43,12 +43,12 @@ def extractFromFasta(infile, outfile, target):
 
 def main():
 	parser = argparse.ArgumentParser(description = 
-"This script will will extract sequences from an alignment. Outputs \
-sequences in standard multi-fasta format (i.e. not an alignment)")
+"This script will will extract sequences from an alignment.")
 	parser.add_argument("-i", help = "Path to input fasta alignment.")
 	parser.add_argument("-t", 
 help = "Sample ID of target sequence to extract. If none is given, one \
-sample will be randomly selected for each aligned block.")
+sample will be randomly selected for each aligned block. Outputs \
+sequences in standard multi-fasta format (i.e. not an alignment)")
 	args = parser.parse_args()
 	outfile = args.i[:args.i.find(".")] + "-ExtractedSequences.fa"
 	extractFromFasta(args.i, outfile, args.t)
