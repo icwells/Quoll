@@ -86,12 +86,12 @@ concatenate blastn, blastx, and blastp results into a single csv summary.")
 results. Must contain three files titled: blastn.outfmt6, blastx.outfmt6, \
 and blastp.outfmt6. Output will be written to this directory.")
 	args = parser.parse_args()
-	indir = ars.i
+	indir = args.i
 	if indir[-1] != "/":
 		indir += "/"
 	outfile = indir + "mergedBlastResults.csv" 
-	annotation = blastDict(args.i) 
-	writeCSV(annotation, args.o)
+	annotation = blastDict(indir) 
+	writeCSV(annotation, outfile)
 
 if __name__ == "__main__":
 	main()
