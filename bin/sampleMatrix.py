@@ -4,7 +4,7 @@ every sample in an alignment.'''
 import argparse
 from collections import OrderedDict
 from transHeaders import parseHeader, findSpecies
-from combMatrix import combDict, alignedSamples, convertToMatrix
+from combMatrix import alignedSamples, convertToMatrix
 
 def matrix(species):
 	# Create matrix 
@@ -85,8 +85,7 @@ samples (By default it will return values for pairwise combinations)." )
 	if args.combinations == True:
 		# Make output file
 		outfile = args.i[:args.i.find(".")] + "-combinationMatrix.csv"
-		counts = combDict(species)
-		counts = alignedSamples(args.i, counts)
+		counts = alignedSamples(args.i)
 		mat = convertToMatrix(counts, species)
 		printMatrix(mat, species, outfile)
 	else:
